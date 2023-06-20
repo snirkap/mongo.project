@@ -1,0 +1,20 @@
+# Default values for helm.
+
+replicaCount: 1
+replicaCountApp: 1
+
+image:
+  db: mongo
+  app: mongo-express
+
+appService:
+  type: NodePort
+  port: 30000
+
+dbService:
+  type: ClusterIP
+
+
+
+
+

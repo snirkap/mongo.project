@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-mongodb-deployment
+  labels:
+    app: {{ .Release.Name }}-mongodb-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-mongodb-deployment
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-mongodb-deployment
+    spec:
+      containers:
+      - name: {{ .Release.Name }}-mongodb-deployment
+        image: {{ .Values.image.db }}
+        ports:
+        - containerPort: 27017
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: username
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: password
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name:  {{ .Release.Name }}-mongodb-service
+spec:
+  selector:
+    app: {{ .Release.Name }}-mongodb-deployment
+  type:   {{ .Values.dbService.type }} 
+  ports:
+  - name:  {{ .Release.Name }}mongodb-port
+    protocol: TCP
+    port:  27017
+    targetPort:  27017
