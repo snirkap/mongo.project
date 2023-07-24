@@ -175,6 +175,9 @@ The spec section defines the desired state of the Service.
       -  port:  8081
          targetPort:  8081
          nodePort: 30000
+
+The mongo-express.yaml file is a Kubernetes YAML manifest that defines the necessary resources to deploy a Mongo Express web-based admin interface for MongoDB using Kubernetes. It consists of two main sections, representing a Deployment and a Service.
+
 ### Deployment Section
 apiVersion: apps/v1
 The apiVersion specifies the version of the Kubernetes API that this manifest uses. In this case, it uses the apps/v1 API version, which is used for working with Deployments.
@@ -274,6 +277,8 @@ The spec section defines the desired state of the Service.
     username: c25pcg==
     password: MTIzNA==
 
+The secret.yaml file is a Kubernetes YAML manifest that defines a Secret resource. Secrets are used to store sensitive data like passwords, access tokens, or any confidential information, and Kubernetes manages them securely.
+
 ### Secret Section
 apiVersion: v1
 
@@ -313,6 +318,9 @@ The data section is where the sensitive data is encoded and stored. The data is 
     name: mongodb-configmap
   data:
     db-url: mongodb-service
+
+The configmap.yaml file is a Kubernetes YAML manifest that defines a ConfigMap resource. ConfigMaps are used to store configuration data separately from the pod specifications, making it easy to manage and modify configuration settings without changing the pod's definition.
+
 ### ConfigMap Section
 apiVersion: v1
 
