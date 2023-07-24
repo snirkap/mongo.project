@@ -82,9 +82,12 @@ The "template" section defines the pod template that will be used for creating n
       * containers:
         The containers section defines the containers to run in the pod.
         * name: mongodb
+
           The name of the container is set to "mongodb".
           * image: mongo
-            The Docker image used for the container is "mongo", which is the official MongoDB image from Docker Hub.
+
+            The Docker image used for the container is "mongo", which is the official MongoDB 
+            image from Docker Hub.
           * ports:
             The ports section specifies the ports that the container will listen on.
             * containerPort: 27017
@@ -92,9 +95,10 @@ The "template" section defines the pod template that will be used for creating n
           * env:
             The "env" section defines environment variables to be set in the container.
             * name: MONGO_INITDB_ROOT_USERNAME
-              The environment variable MONGO_INITDB_ROOT_USERNAME is set from a Kubernetes secret named "mongodb-secret" with the key "username". This is likely                used to set the MongoDB root user's username.
+              The environment variable MONGO_INITDB_ROOT_USERNAME is set from a Kubernetes 
+              secret named "mongodb-secret" with the key "username". 
             * name: MONGO_INITDB_ROOT_PASSWORD
-              The environment variable MONGO_INITDB_ROOT_PASSWORD is set from a Kubernetes secret named "mongodb-secret" with the key "password". This is likely                used to set the MongoDB root user's password.
+              The environment variable MONGO_INITDB_ROOT_PASSWORD is set from a Kubernetes secret named "mongodb-secret" with the key "password". 
 ### Service Section
 The second section in the mongo.yaml file is for creating a Kubernetes Service that exposes the MongoDB Deployment internally within the Kubernetes cluster.
 
@@ -216,23 +220,21 @@ The spec section defines the desired state of the Deployment.
      The containers section defines the containers to run in the pod.
      * name: mongo-express
        The name of the container is set to "mongo-express".
-       * image: mongo-express
-         The Docker image used for the container is "mongo-express", which provides the Mongo Express web-based admin interface for MongoDB.
-       * ports:
-         The ports section specifies the ports that the container will listen on.
+     * image: mongo-express
+       The Docker image used for the container is "mongo-express", which provides the Mongo 
+       Express web-based admin interface for MongoDB.
+     * ports:
+       The ports section specifies the ports that the container will listen on.
          * containerPort: 8081
            The container listens on port 8081, which is the default port for Mongo Express.
        * env:
          The env section defines environment variables to be set in the container.
          * name: ME_CONFIG_MONGODB_ADMINUSERNAME
-           The environment variable ME_CONFIG_MONGODB_ADMINUSERNAME is set from a Kubernetes secret named "mongodb-secret" with the key "username". This is 
-           likely used to set the Mongo Express admin username for MongoDB.
+           The environment variable ME_CONFIG_MONGODB_ADMINUSERNAME is set from a Kubernetes secret named "mongodb-secret" with the key "username". .
          * name: ME_CONFIG_MONGODB_ADMINPASSWORD
-           The environment variable ME_CONFIG_MONGODB_ADMINPASSWORD is set from a Kubernetes secret named "mongodb-secret" with the key "password". This is 
-           likely used to set the Mongo Express admin password for MongoDB.
+           The environment variable ME_CONFIG_MONGODB_ADMINPASSWORD is set from a Kubernetes secret named "mongodb-secret" with the key "password". 
          * name: ME_CONFIG_MONGODB_SERVER
-           The environment variable ME_CONFIG_MONGODB_SERVER is set from a Kubernetes configMap named "mongodb-configmap" with the key "db-url". This is likely 
-           used to specify the MongoDB server URL.
+           The environment variable ME_CONFIG_MONGODB_SERVER is set from a Kubernetes configMap named "mongodb-configmap" with the key "db-url". 
    
 ### Service Section
 The second section in the mongo-express.yaml file is for creating a Kubernetes Service that exposes the Mongo Express Deployment externally.
@@ -305,10 +307,10 @@ The data section is where the sensitive data is encoded and stored. The data is 
 
 * username: c25pcg==
   This is a key-value pair in the Secret, where the key is "username" and the value is "c25pcg==". The value is base64 encoded, and when decoded, it becomes the 
-  original value, which is likely the username for accessing a MongoDB database.
+  original value.
 * password: MTIzNA==
   Similarly, this is another key-value pair in the Secret, where the key is "password" and the value is "MTIzNA==". The value is also base64 encoded and, when 
-  decoded, becomes the original value, which is likely the password for accessing the MongoDB database.
+  decoded, becomes the original value.
 
 * mongo-configMap.yaml
   ```
@@ -342,5 +344,4 @@ data
 The data section is where the configuration data is stored as key-value pairs.
 
 * db-url: mongodb-service
-  This is a key-value pair in the ConfigMap, where the key is "db-url" and the value is "mongodb-service". This configuration data likely represents the URL or 
-  connection string to access the MongoDB service.
+  This is a key-value pair in the ConfigMap, where the key is "db-url" and the value is "mongodb-service". in this case the "db-url" is the name of mongodb service.
