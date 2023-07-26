@@ -2,6 +2,13 @@
 Kubernetes Deployment with MongoDB, MongoWeb, and Helm
 This repository contains Kubernetes deployment files and Helm charts for deploying MongoDB and Mongo-express applications. The project includes configuration for two deployments, two services, a Secret, and a ConfigMap.
 ## tutorial
+### These are the commands to run the project:
+1. git clone https://github.com/snirkap/mongo.project.git
+2. cd mongo.project/
+3. kubectl apply -f mongo-configMap.yaml
+4. kubectl apply -f secret.yaml
+5. kubectl apply -f mongo.yaml
+6. kubectl apply -f mongo-express.yaml 
 * mongo.yaml
     ```
     apiVersion: apps/v1
