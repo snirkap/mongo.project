@@ -2,6 +2,10 @@
 The collection of Helm templates provides an efficient way to manage and deploy the entire MongoDB application stack, including the MongoDB database and the Mongo Express admin interface, on Kubernetes clusters. With Helm's templating capabilities, users can easily customize the configuration parameters, making the deployment process flexible and adaptable to different environments and requirements. Helm simplifies the management of Kubernetes deployments, enhances reusability, and streamlines the overall application deployment process.
 
 ## tutorial
+### These are the commands to run the project:
+1. git clone https://github.com/snirkap/mongo.project.git
+2. cd mongo.project/helm/
+3. helm install mongo .
 * values.yaml
   ```
   # Default values for helm.
